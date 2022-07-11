@@ -56,7 +56,20 @@ public class SecondActivity extends AppCompatActivity {
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(myApp);
                 alert.setTitle("Certificate Notice");
-                alert.setMessage("Certificates can only be viewed on the browser.");
+                alert.setMessage("Do you want to download the certificate?");
+                //alert.setMessage("You will be redirected to your browser and asked to log in again to download the certificate.");
+                alert.setPositiveButton("Proceed",
+                    new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            WebView.HitTestResult result = view.getHitTestResult();
+                            String data = result.getExtra();
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(data));
+                            myApp.startActivity(browserIntent);
+                        }
+                    });
+
                 alert.setNegativeButton("Close", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -64,12 +77,8 @@ public class SecondActivity extends AppCompatActivity {
                     }
                 });
                 alert.show();
-                //D lumalabas yung pdf pero naoopen link
-                //WebView.HitTestResult result = view.getHitTestResult();
-                //String data = result.getExtra();
-                //Context context = webView.getContext();
-                //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(data));
-                //myApp.startActivity(browserIntent);
+
+
                 return false;
             }
 
