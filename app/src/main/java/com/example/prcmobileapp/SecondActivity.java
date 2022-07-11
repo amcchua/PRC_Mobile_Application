@@ -150,7 +150,7 @@ public class SecondActivity extends AppCompatActivity {
 
 
 
-    //For Upload Photo
+    //For Uploading Photo
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
